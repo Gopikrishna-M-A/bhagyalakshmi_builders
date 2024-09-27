@@ -104,12 +104,15 @@ const Nav = ({ data }) => {
 
         {/* Mobile Navigation */}
         <div className='flex items-center justify-between px-4 lg:hidden'>
-          <Link href='/'>
+        <Link
+            href='/'
+            className='justify-self-center overflow-hidden h-12 flex items-center'>
             <Image
-              src='https://medialibrarycfo.entrata.com/3282/MLv3/9/36/2023/01/26/125046/63d2d9960e7742.32313398214.png'
+              src={data?.logo ? imageUrl(data.logo) : "/placeholder-logo.png"}
               width={100}
               height={100}
               alt='Logo'
+              className='object-contain h-full w-auto'
             />
           </Link>
           <div className='flex items-center gap-5'>
