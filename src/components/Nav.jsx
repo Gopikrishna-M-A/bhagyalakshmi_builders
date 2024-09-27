@@ -130,7 +130,8 @@ const Nav = ({ data }) => {
               </a>
             )}
             </div>
-            <Sheet>
+            <Link href='/contact'>CONTACT US</Link>
+            {/* <Sheet>
               <SheetTrigger asChild>
                 <button className='text-white'>
                   <Menu className='h-6 w-6' />
@@ -163,7 +164,7 @@ const Nav = ({ data }) => {
                   </Link>
                 </div>
               </SheetContent>
-            </Sheet>
+            </Sheet> */}
           </div>
         </div>
       </nav>
