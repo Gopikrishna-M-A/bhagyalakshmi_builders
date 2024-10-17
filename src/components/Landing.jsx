@@ -333,7 +333,7 @@ export default function Landing({ data }) {
                 <h2 className='mb-4 text-4xl font-bold md:text-5xl'>
                   {data.news.heading || "News"}
                 </h2>
-                <div className='mx-auto min-h-48 md:w-3/4'>
+                <div className='mx-auto md:min-h-48 md:w-3/4'>
                   <p className='mb-2 text-sm text-gray-600 md:text-lg'>
                     {data.news.newsItems[currentNewsIndex]?.date ||
                       "Date unavailable"}
