@@ -23,7 +23,7 @@ export const metadata = {
   },
   images: [
     {
-      url: '/logo.png',
+      url: 'logo.png',
       width: 1200,
       height: 630,
       alt: 'Bhagyalakshmi Builders - Premier Real Estate Developers',
