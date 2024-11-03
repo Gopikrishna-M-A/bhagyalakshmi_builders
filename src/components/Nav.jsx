@@ -52,9 +52,9 @@ const Nav = ({ data }) => {
   }, [isSticky, isHomePage])
 
   const navClasses = isHomePage
-    ? `bg-foreground z-50 py-4 text-sm text-[#b99f8e] shadow-md transition-all duration-300
+    ? `bg-[#060d20] z-50 py-4 text-sm text-white shadow-md transition-all duration-300
        ${isSticky ? "animate-slideDown fixed left-0 right-0 top-0" : ""}`
-    : "bg-foreground z-50 py-4 text-sm text-[#b99f8e] shadow-md fixed left-0 right-0 top-0"
+    : "bg-[#060d20] z-50 py-4 text-sm text-white shadow-md fixed left-0 right-0 top-0"
 
   return (
     <>

@@ -53,9 +53,28 @@ export default function Contact({ data }) {
     },
   })
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+      
+      // Show success message to user
+      alert('Message sent successfully!');
+      form.reset();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to send message. Please try again.');
+    }
+  };
 
   if (!data)
     return (
@@ -132,7 +151,7 @@ export default function Contact({ data }) {
                   {form.formState.errors.acceptTerms.message}
                 </p>
               )}
-              <Button type='submit' className='w-full'>
+              <Button type='submit' className='w-full bg-blue-900 hover:bg-blue-950'>
                 CONTACT ME
               </Button>
             </form>

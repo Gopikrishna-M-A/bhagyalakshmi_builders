@@ -16,6 +16,9 @@ import Nav from "@/components/Nav"
 import { imageUrl } from "@/services/sanity"
 import Link from "next/link"
 
+
+
+
 const whisper = Whisper({ weight: "400", subsets: ["latin"], display: "swap" })
 const montserratBold = Montserrat({
   weight: "800",
@@ -148,11 +151,11 @@ export default function Landing({ data }) {
               className={`mb-8 text-sm uppercase ${montserratLight.className}`}>
               {data?.hero?.subheading || "Discover our projects"}
             </p>
-            <a href='/contact' className='flex space-x-4'>
-              <Button className='bg-amber-600 hover:bg-amber-700'>
-                {data?.hero?.ctaButtonText || "Explore"}
-              </Button>
-            </a>
+            <Link href='/contact' className='flex space-x-4'>
+  <Button className='bg-blue-950 hover:bg-blue-900 transition-all text-lg px-28 py-4 h-auto font-semibold'>
+    {data?.hero?.ctaButtonText || "Explore"}
+  </Button>
+</Link>
           </motion.div>
         </section>
 
@@ -180,7 +183,7 @@ export default function Landing({ data }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`font-script mb-2 font-serif text-5xl italic text-[#b3a083] md:text-7xl ${whisper.className}`}>
+                className={`font-script mb-2 font-serif text-5xl italic text-blue-900 md:text-7xl ${whisper.className}`}>
                 About Us
               </motion.h3>
               <motion.h2
@@ -241,19 +244,19 @@ export default function Landing({ data }) {
             hidden: { opacity: 0, y: 50 },
           }}
           transition={{ duration: 0.5 }}
-          className='bg-foreground text-primary-foreground pt-16'>
+          className='bg-[#060d20] text-primary-foreground pt-16'>
           <div className='container mx-auto px-4'>
             <h2
               className={`mb-8 text-center text-4xl font-bold md:text-5xl ${montserratBold.className}`}>
               {data.locations.heading || "Our Locations"}
             </h2>
             <p
-              className={`mx-auto mb-8 max-w-3xl text-center text-xs uppercase text-[#b99f8e] ${montserratLight.className}`}>
+              className={`mx-auto mb-8 max-w-3xl text-center text-xs uppercase  ${montserratLight.className}`}>
               {data.locations.description || "Discover where we operate."}
             </p>
             <div className='mb-8 flex justify-center'>
               <Button
-                className='bg-[#b99f8e] hover:bg-[#bca595]'
+                className='bg-blue-900 hover:bg-blue-950'
                 onClick={handleNextLocation}>
                 Next Location
               </Button>
@@ -327,7 +330,7 @@ export default function Landing({ data }) {
               {/* Center Content */}
               <div className='py-10 text-center lg:py-32'>
                 <h3
-                  className={`font-script mb-2 text-5xl text-[#b99f8e] md:text-7xl ${whisper.className}`}>
+                  className={`font-script mb-2 text-5xl text-blue-900 md:text-7xl ${whisper.className}`}>
                   Our Expertise
                 </h3>
                 <h2 className='mb-4 text-4xl font-bold md:text-5xl'>
@@ -348,7 +351,7 @@ export default function Landing({ data }) {
                   </p>
                 </div>
                 <Button
-                  className='bg-[#b99f8e] hover:bg-[#bca595]'
+                  className='bg-blue-900 hover:bg-blue-950'
                   onClick={handleNextNews}>
                   NEXT
                 </Button>
@@ -384,12 +387,12 @@ export default function Landing({ data }) {
           hidden: { opacity: 0, y: 50 },
         }}
         transition={{ duration: 0.5 }}
-        className='bg-foreground py-16 text-white'>
+        className='bg-[#060d20] py-16 text-white'>
         <div className='container mx-auto px-4'>
           <h2 className='mb-2 text-center text-5xl font-bold'>
             {data?.projectGallery?.heading || "Project Gallery"}
           </h2>
-          <p className='mx-auto mb-8 max-w-3xl text-center text-xs uppercase text-[#b99f8e]'>
+          <p className='mx-auto mb-8 max-w-3xl text-center text-xs uppercase '>
             {data?.projectGallery?.description || "Explore our projects"}
           </p>
           <div className='grid auto-rows-[200px] grid-cols-2 gap-2 md:grid-cols-4'>
@@ -467,7 +470,7 @@ export default function Landing({ data }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`font-script mb-2 font-serif text-5xl italic text-[#b99f8e] md:text-7xl ${whisper.className}`}>
+                className={`font-script mb-2 font-serif text-5xl italic text-blue-900 md:text-7xl ${whisper.className}`}>
                 Contact Us
               </motion.h3>
               <motion.h2
@@ -490,7 +493,7 @@ export default function Landing({ data }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.3 }}>
                 <Link href='/contact'>
-                  <Button className='bg-[#b99f8e] hover:bg-[#bca595]'>
+                  <Button className='bg-blue-900 hover:bg-blue-950'>
                     {data?.contact?.ctaButtonText || "CONTACT US"}
                   </Button>
                 </Link>
