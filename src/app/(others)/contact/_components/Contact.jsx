@@ -1,30 +1,17 @@
 "use client"
-
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import imageUrlBuilder from "@sanity/image-url"
-// import { format } from "date-fns"
-// import { CalendarIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import * as z from "zod"
 import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-
-// import { Calendar } from "@/components/ui/calendar"
 import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from "@/components/ui/popover"
-
+import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
-
-
 import { sanityClient } from "@/services/sanityClient"
+import { ReloadIcon } from "@radix-ui/react-icons"
 
 const builder = imageUrlBuilder(sanityClient)
 
@@ -41,6 +28,8 @@ const formSchema = z.object({
 })
 
 export default function Contact({ data }) {
+  const [loading, setLoading] = useState(false)
+  const { toast } = useToast()
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -55,26 +44,34 @@ export default function Contact({ data }) {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      setLoading(true)
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      });
-      
+      })
+
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message")
       }
-      
+
       // Show success message to user
-      alert('Message sent successfully!');
-      form.reset();
+      toast({
+        title: "Message sent successfully!",
+      })
+      form.reset()
     } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to send message. Please try again.');
+      console.error("Error:", error)
+      toast({
+        variant: "destructive",
+        title: "Failed to send message. Please try again.",
+      })
+    } finally {
+      setLoading(false)
     }
-  };
+  }
 
   if (!data)
     return (
@@ -151,9 +148,18 @@ export default function Contact({ data }) {
                   {form.formState.errors.acceptTerms.message}
                 </p>
               )}
-              <Button type='submit' className='w-full bg-blue-900 hover:bg-blue-950'>
-                CONTACT ME
-              </Button>
+              {loading ? (
+                <Button disabled className='w-full bg-blue-950'>
+                  <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </Button>
+              ) : (
+                <Button
+                  type='submit'
+                  className='w-full bg-blue-900 hover:bg-blue-950'>
+                  CONTACT ME
+                </Button>
+              )}
             </form>
           </div>
         </div>

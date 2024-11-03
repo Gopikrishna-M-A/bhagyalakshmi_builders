@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer"
 import "./globals.css"
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata = {
   title: "Bhagyalakshmi Builders | Premier Real Estate Builders in Thrissur",
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
         className={`antialiased`}>
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   )
