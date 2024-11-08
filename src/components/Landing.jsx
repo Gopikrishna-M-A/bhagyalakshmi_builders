@@ -250,7 +250,7 @@ export default function Landing({ data }) {
             hidden: { opacity: 0, y: 50 },
           }}
           transition={{ duration: 0.5 }}
-          className='bg-[#060d20] text-primary-foreground pt-16 min-h-screen'>
+          className='bg-[#060d20] text-primary-foreground pt-16 md:min-h-screen'>
           <div className='container mx-auto px-4'>
             {/* <h2
               className={`mb-8 text-center text-4xl font-bold md:text-5xl ${montserratBold.className}`}>
