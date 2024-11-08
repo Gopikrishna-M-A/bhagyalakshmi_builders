@@ -17,13 +17,13 @@ const Footer = async () => {
     <footer className="bg-[#060d20] py-10 text-white">
       <div className="container mx-auto space-y-6 px-4 text-center md:space-y-10">
         {/* Heading */}
-        <h2 className={`text-5xl md:text-7xl ${whisper.className} text-white`}>
+        <h2 className={`text-5xl md:text-7xl ${whisper.className} text-blue-300`}>
        {footerData?.footer?.heading}
         </h2>
 
         {/* Contact Info */}
         <div className="space-y-4 md:space-y-2">
-          <div className="font-bold capitalize text-white">Contact</div>
+          <div className="font-bold capitalize text-blue-300">Contact</div>
           <p className="text-sm md:text-base">
             {footerData?.companyName} {footerData?.address}
           </p>
@@ -34,7 +34,7 @@ const Footer = async () => {
 
         {/* Social Links */}
         <div>
-          <div className="mb-2 font-bold capitalize text-white">Be Social</div>
+          <div className="mb-2 font-bold capitalize text-blue-300">Be Social</div>
           <div className="space-x-4">
             {footerData?.socialMedia?.facebook && (
               <a href={footerData.socialMedia.facebook} className="bg-muted-foreground inline-block rounded-full p-2">

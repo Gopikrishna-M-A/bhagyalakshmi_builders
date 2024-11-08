@@ -15,6 +15,7 @@ import {
 import Nav from "@/components/Nav"
 import { imageUrl } from "@/services/sanity"
 import Link from "next/link"
+import TeamSection from "./TeamSection"
 
 
 
@@ -103,7 +104,7 @@ export default function Landing({ data }) {
   }
 
   return (
-    <div className='min-h-screen bg-[#f4f4ef]'>
+    <div className='min-h-screen bg-[#f4f4ef] '>
       <div className='flex h-screen flex-col'>
         {/* Hero Section */}
         <section className='relative h-screen overflow-hidden'>
@@ -165,6 +166,8 @@ export default function Landing({ data }) {
         </div>
       </div>
 
+      <TeamSection data={data}/>
+
       {/* About Us Section */}
       <motion.section
         ref={refAbout}
@@ -214,6 +217,7 @@ export default function Landing({ data }) {
                   layout='fill'
                   objectFit='cover'
                   alt='About us feature'
+                  className="rounded-xl"
                 />
               </div>
               <div className='absolute -left-0 bottom-0 -mb-8 -mr-4 h-40 w-1/2 md:-left-20 md:-mb-12 md:-mr-8 md:h-80'>
@@ -226,6 +230,7 @@ export default function Landing({ data }) {
                   layout='fill'
                   objectFit='cover'
                   alt='About us feature'
+                   className="rounded-xl"
                 />
               </div>
             </div>
@@ -244,12 +249,15 @@ export default function Landing({ data }) {
             hidden: { opacity: 0, y: 50 },
           }}
           transition={{ duration: 0.5 }}
-          className='bg-[#060d20] text-primary-foreground pt-16'>
+          className='bg-[#060d20] text-primary-foreground pt-16 min-h-screen'>
           <div className='container mx-auto px-4'>
-            <h2
+            {/* <h2
               className={`mb-8 text-center text-4xl font-bold md:text-5xl ${montserratBold.className}`}>
               {data.locations.heading || "Our Locations"}
-            </h2>
+            </h2> */}
+            <h3 className={`${whisper.className} text-center text-5xl md:text-7xl text-blue-300 mb-4`}>
+                {data.locations.heading || "Our Presence"}
+              </h3>
             <p
               className={`mx-auto mb-8 max-w-3xl text-center text-xs uppercase  ${montserratLight.className}`}>
               {data.locations.description || "Discover where we operate."}
@@ -378,52 +386,53 @@ export default function Landing({ data }) {
 
       {/* Project Gallery Section */}
       <motion.section
-        id='projects'
-        ref={refGallery}
-        animate={controlsGallery}
-        initial='hidden'
-        variants={{
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 50 },
-        }}
-        transition={{ duration: 0.5 }}
-        className='bg-[#060d20] py-16 text-white'>
-        <div className='container mx-auto px-4'>
-          <h2 className='mb-2 text-center text-5xl font-bold'>
-            {data?.projectGallery?.heading || "Project Gallery"}
-          </h2>
-          <p className='mx-auto mb-8 max-w-3xl text-center text-xs uppercase '>
-            {data?.projectGallery?.description || "Explore our projects"}
-          </p>
-          <div className='grid auto-rows-[200px] grid-cols-2 gap-2 md:grid-cols-4'>
-            {data?.projectGallery?.projects?.map((project, index) => (
-              <div
-                key={index}
-                className={`group relative overflow-hidden 
-                     ${index === 2 ? "row-span-2 md:row-span-1" : ""}
-                    ${index === 3 ? "col-span-1 row-span-2" : ""}
-                    ${index === 4 ? "col-span-2 row-span-2" : ""}
-                    ${index > 4 ? "col-span-1" : ""}
-                     ${index === 7 ? "col-span-2 md:col-span-1" : ""}`}
-                onClick={() => openGalleryDialog(index)}>
-                <Image
-                  src={
-                    project.image ? imageUrl(project.image) : "/placeholder.jpg"
-                  }
-                  alt={project.title || "Project image"}
-                  layout='fill'
-                  objectFit='cover'
-                  className='cursor-pointer rounded-sm transition-transform duration-300 ease-in-out group-hover:scale-110'
-                />
-                <div className='absolute inset-0 flex flex-col justify-end bg-black bg-opacity-40 p-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
-                  <h3 className='text-lg font-bold'>{project.title}</h3>
-                  <p className='text-sm'>{project.description}</p>
-                </div>
-              </div>
-            ))}
+  id='projects'
+  ref={refGallery}
+  animate={controlsGallery}
+  initial='hidden'
+  variants={{
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 50 },
+  }}
+  transition={{ duration: 0.5 }}
+  className='bg-[#060d20] py-16 text-white'>
+  <div className='container mx-auto px-4'>
+    <h3 className={`${whisper.className} text-center text-5xl md:text-7xl text-blue-300 mb-4`}>
+      {data?.projectGallery?.heading || "Project Gallery"}
+    </h3>
+    <p className='mx-auto mb-8 max-w-3xl text-center text-xs uppercase '>
+      {data?.projectGallery?.description || "Explore our projects"}
+    </p>
+    <div className='grid auto-rows-[200px] grid-cols-2 gap-2 md:grid-cols-4'>
+      {data?.projectGallery?.projects?.map((project, index) => (
+        <div
+          key={index}
+          className={`group relative overflow-hidden 
+            ${index === 2 ? "row-span-2 md:row-span-1" : ""}
+            ${index === 3 ? "col-span-1 row-span-2" : ""}
+            ${index === 4 ? "col-span-2 row-span-2" : ""}
+            ${index > 4 ? "col-span-1" : ""}
+            ${index === 7 ? "col-span-2 md:col-span-1" : ""}`}
+          onClick={() => openGalleryDialog(index)}>
+          <Image
+            src={
+              project.image ? imageUrl(project.image) : "/placeholder.jpg"
+            }
+            alt={`${project.clientName}'s project`}
+            layout='fill'
+            objectFit='cover'
+            className='cursor-pointer rounded-sm transition-transform duration-300 ease-in-out group-hover:scale-110'
+          />
+          <div className='absolute inset-0 flex flex-col justify-end bg-black bg-opacity-60 p-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
+            <h3 className='text-lg font-bold'>{project.clientName}</h3>
+            <p className='text-sm text-gray-300'>{project.time}</p>
+            <p className='text-sm mt-1'>{project.description}</p>
           </div>
         </div>
-      </motion.section>
+      ))}
+    </div>
+  </div>
+</motion.section>
 
       {/* Contact Section */}
       <motion.section
@@ -449,6 +458,7 @@ export default function Landing({ data }) {
                   layout='fill'
                   objectFit='cover'
                   alt='Contact us feature'
+                   className="rounded-xl"
                 />
               </div>
               <div className='absolute -right-0 bottom-0 -mb-8 -ml-4 h-40 w-1/2 md:-right-20 md:-mb-12 md:-ml-8 md:h-80'>
@@ -461,6 +471,7 @@ export default function Landing({ data }) {
                   layout='fill'
                   objectFit='cover'
                   alt='Contact us feature'
+                   className="rounded-xl"
                 />
               </div>
             </div>
@@ -504,33 +515,48 @@ export default function Landing({ data }) {
       </motion.section>
 
       <Dialog open={isGalleryDialogOpen} onOpenChange={setIsGalleryDialogOpen}>
-        <DialogContent className='flex h-[90vh] items-center justify-center p-0 sm:max-w-[90vw]'>
-          <div className='relative h-full w-full'>
-            <Image
-              src={
-                data?.projectGallery?.projects?.[currentImageIndex]?.image
-                  ? imageUrl(
-                      data.projectGallery.projects[currentImageIndex].image
-                    )
-                  : "/placeholder.jpg"
-              }
-              alt='Gallery image'
-              layout='fill'
-              objectFit='contain'
-            />
-            <button
-              onClick={prevImage}
-              className='absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black bg-opacity-50 p-2 text-white transition-all hover:bg-opacity-75'>
-              <ChevronLeft className='h-6 w-6' />
-            </button>
-            <button
-              onClick={nextImage}
-              className='absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black bg-opacity-50 p-2 text-white transition-all hover:bg-opacity-75'>
-              <ChevronRight className='h-6 w-6' />
-            </button>
-          </div>
-        </DialogContent>
-      </Dialog>
+  <DialogContent className='flex h-[90vh] items-center justify-center p-0 sm:max-w-[90vw]'>
+    <div className='relative h-full w-full'>
+      <Image
+        src={
+          data?.projectGallery?.projects?.[currentImageIndex]?.image
+            ? imageUrl(
+                data.projectGallery.projects[currentImageIndex].image
+              )
+            : "/placeholder.jpg"
+        }
+        alt='Gallery image'
+        layout='fill'
+        objectFit='contain'
+      />
+      
+      {/* Project Details Overlay */}
+      <div className='absolute -bottom-1 -left-1 -right-1 bg-black bg-opacity-70 p-6 text-white'>
+        <h3 className='text-xl font-bold mb-2'>
+          {data?.projectGallery?.projects?.[currentImageIndex]?.clientName || 'Client Name'}
+        </h3>
+        <p className='text-gray-300 text-sm mb-2'>
+          {data?.projectGallery?.projects?.[currentImageIndex]?.time || 'Project Time'}
+        </p>
+        <p className='text-sm'>
+          {data?.projectGallery?.projects?.[currentImageIndex]?.description || 'Project Description'}
+        </p>
+      </div>
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevImage}
+        className='absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black bg-opacity-50 p-2 text-white transition-all hover:bg-opacity-75'>
+        <ChevronLeft className='h-6 w-6' />
+      </button>
+      <button
+        onClick={nextImage}
+        className='absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black bg-opacity-50 p-2 text-white transition-all hover:bg-opacity-75'>
+        <ChevronRight className='h-6 w-6' />
+      </button>
+    </div>
+  </DialogContent>
+</Dialog>
     </div>
   )
 }

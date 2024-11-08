@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body
-        className={`antialiased`}>
+        className={`antialiased overscroll-none`}>
         {children}
         <Footer />
         <Toaster />

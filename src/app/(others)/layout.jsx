@@ -6,7 +6,7 @@ export default async function RootLayout({ children }) {
   return (
     <div className="bg-[#f4f4ef]">
       <Nav data={data}/>
-      <div className="mt-20 md:mt-24">{children}</div>
+      <div className="mt-10">{children}</div>
     </div>
   );
 }
