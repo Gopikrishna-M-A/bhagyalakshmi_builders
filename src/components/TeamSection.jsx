@@ -40,7 +40,7 @@ export default function TeamSection({ data }) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {data?.team?.members?.map((member, index) => (
             <motion.div
               key={index}

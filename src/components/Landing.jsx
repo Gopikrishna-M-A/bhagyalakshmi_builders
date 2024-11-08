@@ -178,7 +178,7 @@ export default function Landing({ data }) {
           hidden: { opacity: 0, y: 50 },
         }}
         transition={{ duration: 0.5 }}
-        className='bg-[#f4f4ef] py-32'>
+        className='bg-[#f4f4ef] pt-10 pb-32 md:py-32'>
         <div className='container mx-auto max-w-6xl px-4'>
           <div className='flex flex-col items-center justify-between md:flex-row'>
             <div className='mt-12 w-full md:mt-0 md:w-1/2 md:pl-12'>
@@ -231,6 +231,7 @@ export default function Landing({ data }) {
                   objectFit='cover'
                   alt='About us feature'
                    className="rounded-xl"
+                    objectPosition="top center"
                 />
               </div>
             </div>
